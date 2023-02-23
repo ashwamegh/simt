@@ -17,5 +17,8 @@
     "http-proxy": "^1.18.1",
     "m3u8-parser": "^6.0.0",
     "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@vercel/node": "^2.9.7"
   }
 }
