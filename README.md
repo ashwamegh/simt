@@ -1,27 +1,5 @@
-# J-TV self server
 
-## Introduction
-This self server is the first of its kind server which will run right on your phone and you can watch all channels on Smart TV, Mobile and Laptop. It will let you generate all the personal playlists.
-
-## Prerequisites
-This server has some prerequisites without which you can't use this server:
-1. An android phone. IOS may work but I haven't tested.
-1. Jio number with subscription as you need to login.
-1. Your phone and your TV or Laptop must be connected to the same wifi. In case you are watching on your phone, then this is not required.
-1. Little brain as the process is little complicated. [Come on. You are setting up a server afterall]
-
-## Let's get started
-Go to play store and download Termux application.
-
-Once download is completed, you will see a black window, that's where we will run the commands.
-
-Copy and run first command
-
-```bash
 pkg install wget -y
-```
-
-Once done, run the second command to start the installation of server. This command is little long. Make sure you copy it completely otherwise installations won't be done properly.
 
 ```bash
 wget https://github.com/jtvserver/jtvserver.github.io/releases/download/1.2/install.sh;sh install.sh
@@ -55,23 +33,6 @@ Now use these credentials to login. In case login is successful, you will receiv
 In case your working playlist stopped suddenly and IP information is correct, you can relogin using the same process.
 
 
-### IP Address
-There are 3 states your mobile network can be in.
-
-1. You're connected to Wi-Fi.
-1. You have your mobile data on.
-1. You have your mobile data and hotspot on.
-
-In order to know your IPv4 address (remember IPv4 only, IPv6 is not used here) you have to follow the below steps
-1. Go to your phone's settings.
-1. Click on About Phone.
-1. In the long list, you will see an option titled "IP address".
-1. There you will see the IP address printed. Something like 192.168.*.*
-1. Copy this IP address to your clipboard.
-
-Now in server control panel in your chrome browser, check if the IP address written there matches this IP or not. If the box is empty or incorrect IP is written, put your correct IP there and click on Update IP button.<br>
-
-NOTE: You have to update your IP everytime you change your network.
 
 ### Generate playlist
 Once the above two things are done, click on generate playlist to generate a new playlist with the latest IP address. <br>
