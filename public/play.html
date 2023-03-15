@@ -9,17 +9,17 @@
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
     <link href="https://fonts.googleapis.com/css?family=Poppins|Quattrocento+Sans" rel="stylesheet" />
     <script src="https://cdn.plyr.io/3.6.3/plyr.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <!-- dont use this analytics code pls -->
 <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F033WLZ7K5"></script>
-    <script>
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-F033WLZ7K5"></script> -->
+    <!-- <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'G-F033WLZ7K5');
-    </script>
+    </script> -->
     <!-- dont use this analytics code pls -->
 </head>
 <style>
@@ -170,8 +170,10 @@ background: #000; */
             <span class="loading-text-words">r</span>
         </div>
     </div>
-    <video autoplay controls crossorigin poster="https://jiotv.com/src/resources/images/JioTV_logo.png" playsinline>
+    <div id="player_div">
+    <video id="player" autoplay="true" controls crossorigin playsinline>
     </video>
+    </div>
 </body>
 <script>
     setTimeout(videovisible, 4000)
@@ -179,6 +181,7 @@ background: #000; */
         document.getElementById('loading').style.display = 'none';
     }
     document.addEventListener("DOMContentLoaded", () => {
+        console.log("there");
         const e = document.querySelector("video")
         const params = new URLSearchParams(window.location.search),
         chName = params.get('ch').split(".")[0],
@@ -186,16 +189,20 @@ background: #000; */
             n = `/getm3u8/${chid}/master.m3u8`,
             o = {};
             document.title = chName.replace("_", " ")
+        
         if (Hls.isSupported()) {
+            console.log("Here 00");
             var config = {
                 maxMaxBufferLength: 100,
             };
             const t = new Hls(config);
-            t.loadSource(n), t.on(Hls.Events.MANIFEST_PARSED, function (n, l) {
+            t.loadSource(n), 
+            t.on(Hls.Events.MANIFEST_PARSED, function (n, l) {
                 const s = t.levels.map(e => e.height);
                 o.controls = ['play-large', 'play', 'mute', 'volume', 'settings', 'fullscreen']
+                console.log(o);
                 o.quality = {
-                    default: s[0],
+                    default: 720,
                     options: s,
                     forced: !0,
                     onChange: e => (function (e) {
@@ -204,12 +211,50 @@ background: #000; */
                         })
                     })(e)
                 };
+                o.fullscreen = {enabled: true, fallback:'force', iosNative: false, container: null}
+                o.clickToPlay = true;
+                o.autoplay = true;
                 new Plyr(e, o)
             }), t.attachMedia(e), window.hls = t
+            // addListeners(e);
+            // removeListeners(e);
         } else {
             new Plyr(e, o)
         }
     });
+
+    // document.addEventListener("loadend", () => {
+    //     const player = document.getElementById('player');
+    //     console.log("2 times");
+    //     console.log(player);
+    // })
+
+//     function Helloworld
+//     () {
+//         console.log("clicked");
+//     }
+
+//     function handleEvent(event) {
+//         // console.log("here");
+//         const playbutton = document.querySelector('[aria-label="Play"]')
+//         const player = document.getElementById('player');
+//         const divbtn = document.getElementById('player_div')
+
+//         if(playbutton) {
+//             console.log(playbutton);
+//             // player.play()
+//             divbtn.click()
+//             playbutton.click();
+//         }
+// }
+
+// function removeListeners(event) {
+//     event.removeEventListener("progress", handleEvent);
+// }
+
+// function addListeners(event) {
+//   event.addEventListener("progress", handleEvent);
+// }
 </script>
 
 </html>

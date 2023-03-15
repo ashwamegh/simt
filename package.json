@@ -4,7 +4,7 @@
   "description": "jiotv server to live tv in the web or in any device",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
